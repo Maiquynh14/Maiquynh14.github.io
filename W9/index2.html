@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="calculator">
+        <h1>Simple Calculator</h1>
+        <form id="calculator-form" onsubmit="event.preventDefault();">
+            <!-- Inputs for numbers -->
+            <label for="num1" class="visually-hidden">Enter first number:</label>
+            <input 
+                type="number" 
+                id="num1" 
+                class="textbox" 
+                placeholder="Enter first number" 
+                aria-label="First number"
+                required
+            >
+            <label for="num2" class="visually-hidden">Enter second number:</label>
+            <input 
+                type="number" 
+                id="num2" 
+                class="textbox" 
+                placeholder="Enter second number" 
+                aria-label="Second number"
+                required
+            >
+            <!-- Buttons for operations -->
+            <div class="button-group">
+                <button 
+                    type="button" 
+                    class="button" 
+                    onclick="calculate('+')"
+                    aria-label="Addition">
+                    +
+                </button>
+                <button 
+                    type="button" 
+                    class="button" 
+                    onclick="calculate('-')"
+                    aria-label="Subtraction">
+                    -
+                </button>
+                <button 
+                    type="button" 
+                    class="button" 
+                    onclick="calculate('*')"
+                    aria-label="Multiplication">
+                    *
+                </button>
+                <button 
+                    type="button" 
+                    class="button" 
+                    onclick="calculate('/')"
+                    aria-label="Division">
+                    /
+                </button>
+            </div>
+        </form>
+        <!-- Result Display -->
+        <div id="result" class="result" role="status" aria-live="polite"></div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
