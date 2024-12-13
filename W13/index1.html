@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,0">
+<title>Registration Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="successMsg" style="display: none;">Form submitted successfully!</div>
+  
+  <form id="registrationForm" novalidate>
+    Username: <br>
+    <input type="text" id="username" name="username"><br>
+    <div class="error-message" id="usernameError"></div>
+  
+    Email: <br>
+    <input type="email" id="email" name="email"><br>
+    <div class="error-message" id="emailError"></div>
+  
+    Password: <br>
+    <input type="password" id="password" name="password"><br>
+    <div class="error-message" id="passwordError"></div>
+  
+    Confirm Password: <br>
+    <input type="password" id="confirmPassword" name="confirmPassword"><br>
+    <div class="error-message" id="confirmPasswordError"></div>
+  
+    Phone Number: <br>
+    <input type="text" id="phoneNumber" name="phoneNumber"><br>
+    <div class="error-message" id="phoneNumberError"></div>
+  
+    <button type="submit">Register</button>
+  </form>
+  
+  <script>
+    const form = document.getElementById('registrationForm');
+    const successMsg = document.getElementById('successMsg');
+  
+    const username = document.getElementById('username');
+    const usernameError = document.getElementById('usernameError');
+  
+    const email = document.getElementById('email');
+    const emailError = document.getElementById('emailError');
+  
+    const password = document.getElementById('password');
+    const passwordError = document.getElementById('passwordError');
+  
+    const confirmPassword = document.getElementById('confirmPassword');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+  
+    const phoneNumber = document.getElementById('phoneNumber');
+    const phoneNumberError = document.getElementById('phoneNumberError');
+  
+    form.addEventListener('input', function() {
+      validateField(username, usernameError, val => val.length >= 3, 'Username must be at least 3 characters long');
+      validateField(email, emailError, val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), 'Please enter a valid email address');
+      validateField(password, passwordError, val => /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/.test(val), 'Password must be at least 8 characters long and contain at least one number and one special character');
+      validateField(confirmPassword, confirmPasswordError, val => val === password.value, 'Passwords do not match');
+      validateField(phoneNumber, phoneNumberError, val => /^\d{3}-\d{3}-\d{4}$/.test(val), 'Please enter a valid phone number (e.g., XXX-XXX-XXXX)');
+    });
+  
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+  
+      const isUsernameValid = validateField(username, usernameError, val => val.length >= 3, 'Username must be at least 3 characters long');
+      const isEmailValid = validateField(email, emailError, val => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val), 'Please enter a valid email address');
+      const isPasswordValid = validateField(password, passwordError, val => /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/.test(val), 'Password must be at least 8 characters long and contain at least one number and one special character');
+      const isConfirmPasswordValid = validateField(confirmPassword, confirmPasswordError, val => val === password.value, 'Passwords do not match');
+      const isPhoneNumberValid = validateField(phoneNumber, phoneNumberError, val => /^\d{3}-\d{3}-\d{4}$/.test(val), 'Please enter a valid phone number (e.g., XXX-XXX-XXXX)');
+  
+      if (isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isPhoneNumberValid) {
+        form.reset();
+        successMsg.style.display = 'block';
+        setTimeout(() => {
+          successMsg.style.display = 'none';
+        }, 3000);
+      }
+    });
+  
+    function validateField(input, errorElement, testFn, errorMessage) {
+      const value = input.value.trim();
+      if (testFn(value)) {
+        input.classList.remove('error');
+        errorElement.textContent = '';
+        return true;
+      } else {
+        input.classList.add('error');
+        errorElement.textContent = errorMessage;
+        return false;
+      }
+    }
+  </script>
+  
+  </body>
+  </html>
