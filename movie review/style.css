@@ -1,0 +1,62 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #c79c57;
+    color: white;
+    padding: 10px 5px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section h2 {
+    color: #f9a825;
+    margin-bottom: 10px;
+}
+
+.section img {
+    display: block;     /* Chuyển ảnh thành phần block để có thể căn giữa */
+    max-width: 80%;     /* Giảm kích thước ảnh xuống 80% chiều rộng của phần chứa */
+    height: auto;       /* Giữ tỷ lệ ảnh */
+    margin: 10px auto;  /* Căn giữa ảnh theo chiều ngang */
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 0.8px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #f9a825;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
